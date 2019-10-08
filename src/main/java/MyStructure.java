@@ -6,13 +6,11 @@ public class MyStructure implements IMyStructure {
     private List<INode> nodes;
 
     public INode findByCode(String code) {
-        INode node = findNode(i -> code.equals(getAllNodes(this.nodes).get(i).getCode()));
-        return node;
+        return findNode(i -> code.equals(getAllNodes(this.nodes).get(i).getCode()));
     }
 
     public INode findByRenderer(String renderer) {
-        INode node = findNode(i -> renderer.equals(getAllNodes(this.nodes).get(i).getRenderer()));
-        return node;
+        return findNode(i -> renderer.equals(getAllNodes(this.nodes).get(i).getRenderer()));
     }
 
     public int count() {

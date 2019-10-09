@@ -6,11 +6,13 @@ public class MyStructure implements IMyStructure {
     private List<INode> nodes;
 
     public INode findByCode(String code) {
-        return findNode(i -> code.equals(getAllNodes(this.nodes).get(i).getCode()));
+        List<INode> allNodes = getAllNodes(this.nodes);
+        return findNode(i -> code.equals(allNodes.get(i).getCode()), allNodes);
     }
 
     public INode findByRenderer(String renderer) {
-        return findNode(i -> renderer.equals(getAllNodes(this.nodes).get(i).getRenderer()));
+        List<INode> allNodes = getAllNodes(this.nodes);
+        return findNode(i -> renderer.equals(allNodes.get(i).getRenderer()), allNodes);
     }
 
     public int count() {
@@ -29,12 +31,11 @@ public class MyStructure implements IMyStructure {
         return newList;
     }
 
-    private INode findNode(CompareParameters cP) {
+    private INode findNode(CompareParameters cP, List<INode> nodeList) {
         INode node = null;
-        List<INode> allNodes = getAllNodes(this.nodes);
-        for (int i = 0; i < allNodes.size(); i++) {
+        for (int i = 0; i < nodeList.size(); i++) {
             if (cP.isSearched(i)) {
-                node = allNodes.get(i);
+                node = nodeList.get(i);
                 break;
             }
         }
